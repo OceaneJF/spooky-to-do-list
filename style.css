@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url(foret.svg);
+  background-image: url(fond.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -415,13 +415,15 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
+
 }
 
 .footer-container {
-  margin-top: 50px;
+  margin-top: 15px;
   width: 50%;
   display: flex;
   justify-content: space-between;
+
 }
 
 .btn {
@@ -441,7 +443,7 @@ footer {
   color: #DFDBFE;
   transition: color 0.3s 0.1s ease-out;
   text-align: center;
-  width: 10%;
+  width: 20%;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -480,10 +482,10 @@ footer {
 
 
 :root {
-  --arrow-bg: rgba(255, 255, 255, 0.3);
+  --arrow-bg: rgba(255, 255, 255, 0.6);
   --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
 
-  --select-bg: rgba(255, 255, 255, 0.2);
+  --select-bg: rgba(255, 255, 255, 0.5);
 }
 
 
@@ -499,13 +501,17 @@ select {
   padding: 1rem 4rem 1rem 1rem;
   background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
     linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
-  color: #DFDBFE;
+  color: white;
   border-radius: 0.25em;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
 
 }
 
 option {
   background-color: #0d0c22;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
 }
