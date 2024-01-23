@@ -13,6 +13,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -24,6 +25,7 @@ header {
   align-items: center;
 }
 
+
 .header-container {
   width: 80%;
   display: flex;
@@ -32,14 +34,13 @@ header {
 }
 
 .group {
-  display: flex;
-  line-height: 28px;
   position: relative;
   width: 100%;
+  margin-right: 70px;
 }
 
 .input {
-  width: 95%;
+  width: 100%;
   height: 70px;
   line-height: 28px;
   padding-left: 20px;
@@ -69,11 +70,11 @@ input:hover {
 }
 
 
-button {
+header button {
   position: relative;
   padding: 12px 35px;
   background: #DFDBFE;
-  font-size: 17px;
+  font-size: 1.3rem;
   font-weight: 500;
   color: #181818;
   border: 3px solid#DFDBFE;
@@ -83,7 +84,7 @@ button {
   cursor: pointer;
   height: 70px;
   font-family: 'Kalam', cursive;
-  font-size: 1.2rem;
+  text-align: center;
 }
 
 .star-1 {
@@ -248,7 +249,7 @@ input[type="datetime-local"] {
   background-color: transparent;
   border: none;
   position: absolute;
-  right: 45px;
+  right: -20px;
   top: 20px;
   z-index: 1;
   width: 15%;
@@ -270,7 +271,7 @@ main::-webkit-scrollbar {
   display: none;
 }
 
-main>div {
+.task {
   display: flex;
   justify-content: space-between;
   width: 80%;
@@ -287,7 +288,7 @@ main>div {
   padding-bottom: 20px;
 }
 
-main>div:hover {
+.task:hover {
   transform: scale(1.02);
 }
 
@@ -329,6 +330,8 @@ main>div:hover {
   stroke-width: 1.5;
   transform: translate3d(0, 0, 0);
   transition: all 0.2s ease;
+  width: 30px;
+  height: 30px;
 }
 
 .check svg path {
@@ -420,16 +423,17 @@ footer {
 
 .footer-container {
   margin-top: 15px;
+  margin-bottom: 15px;
   width: 80%;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
 }
 
 .btn {
   background: transparent;
   position: relative;
-  padding: 5px 15px;
+  padding: 5px 5px;
   display: flex;
   align-items: center;
   font-family: 'Kalam', cursive;
@@ -449,8 +453,12 @@ footer {
   justify-content: center;
 }
 
-.btn span {
-  margin: 10px;
+@media screen and (max-width:1123px) {
+
+  .btn {
+    font-size: 1.1rem;
+    width: 150px;
+  }
 }
 
 .btn::before {
@@ -521,4 +529,169 @@ option {
   width: 50%;
   justify-content: flex-end;
   gap: 5%;
+}
+
+
+@media screen and (max-width:945px) {
+  header {
+    height: 150px;
+  }
+
+  .input {
+    height: 50px;
+  }
+
+  header button {
+    height: 50px;
+  }
+
+  input[type="datetime-local"] {
+    right: -10px;
+    top: 12px;
+  }
+}
+
+@media screen and (max-width:817px) {
+
+  header {
+    height: 150px;
+  }
+
+  .group {
+    width: 60%;
+  }
+
+  .input {
+    height: 50px;
+    width: 100%;
+  }
+
+
+  input[type="datetime-local"] {
+    right: -20px;
+    top: 12px;
+    padding-left: 40px;
+  }
+
+  select {
+    padding: 1rem 2rem 1rem 1rem;
+    width: 40%;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    width: 200px;
+  }
+
+}
+
+@media screen and (max-width:500px) {
+
+  main {
+    height: 100%;
+  }
+
+  header {
+    height: 150px;
+  }
+
+  .header-container {
+    width: 90%;
+  }
+
+  header button {
+
+    padding: 5px 10px;
+
+    font-size: 1rem;
+
+    font-family: 'Kalam', cursive;
+
+  }
+
+  .group {
+    width: 100%;
+    margin-right: 40px;
+  }
+
+  .input::placeholder {
+    color: #9e9ea7;
+    font-family: 'Kalam', cursive;
+    font-size: 0.9rem;
+  }
+
+
+  input[type="datetime-local"] {
+    right: -30px;
+    top: 12px;
+    padding-left: 40px;
+  }
+
+  input[type="datetime-local"]::-webkit-inner-spin-button,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+
+  }
+
+  select {
+    padding: 1rem 2rem 1rem 1rem;
+    width: 40%;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    width: 200px;
+  }
+
+  .task {
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .date {
+    font-size: 0.8rem;
+  }
+
+  .buttonP {
+    width: 35px;
+    height: 35px;
+
+  }
+
+  .check svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .debut {
+
+    padding-left: 14px;
+    gap: 15px;
+  }
+
+  .footer-container {
+    width: 90%;
+  }
+
+  .bas_droit {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 10px;
+    align-items: flex-end;
+
+  }
+
+  .btn {
+    width: 85%;
+    height: 40px;
+  }
+
+  select {
+    width: 60%;
+  }
+
 }
