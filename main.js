@@ -108,6 +108,7 @@ function chargerTaches() {
     const taches = window.localStorage.getItem("taches");
     if (taches) {
         let listeTaches = JSON.parse(taches);
+        listeTaches.sort(function (a, b) { return new Date(a.date) - new Date(b.date) });
         listeTaches.map(function (tache) {
             let nouvelleTache = creerTache(tache);
             ajouterTache(nouvelleTache);
