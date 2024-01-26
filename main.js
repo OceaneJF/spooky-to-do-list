@@ -1,20 +1,110 @@
 const formulaire = document.querySelector("form");
 const main = document.querySelector("main");
+const btnToutEffacer = document.querySelector("#effacer");
+const btnToutCocher = document.querySelector("#cocher");
+const select = document.querySelector("select");
+const body = document.querySelector("body");
+
+select.addEventListener("change", function (event) {
+    switch (event.target.value) {
+        case "0":
+            body.style.backgroundImage = "url(fond.png)"
+            break;
+        case "1":
+            body.style.backgroundImage = "url(fleur.svg)"
+            break;
+        case "2":
+            body.style.backgroundImage = "url(foret.svg)"
+            break;
+        case "3":
+            body.style.backgroundImage = "url(violet.svg)"
+            break;
+        case "4":
+            body.style.backgroundImage = "url(champignon.svg)"
+            break;
+        case "5":
+            body.style.backgroundImage = "url(blanc.svg)"
+            break;
+        case "6":
+            body.style.backgroundImage = "url(cabane.svg)"
+            break;
+        default:
+            body.style.backgroundImage = "url(fond.png)"
+    }
+    const theme = body.style.backgroundImage;
+    window.localStorage.setItem("theme", theme);
+
+
+    console.log(event.target);
+})
+
+function chargerTheme() {
+    let themeActuel = window.localStorage.getItem("theme");
+    let nombre = "0";
+    switch (themeActuel) {
+        case 'url("fond.png")':
+            nombre = '0'
+            break;
+        case 'url("fleur.svg")':
+            nombre = '1'
+            break;
+        case 'url("foret.svg")':
+            nombre = '2'
+            break;
+        case 'url("violet.svg")':
+            nombre = '3'
+            break;
+        case 'url(champignon.svg)':
+            nombre = '4'
+            break;
+        case 'url(blanc.svg)':
+            nombre = '5'
+            break;
+        case 'url(cabane.svg)':
+            nombre = '6'
+            break;
+    }
+    let option = select.querySelector("option[value='" + nombre + "']")
+    option.selected = true;
+    body.style.backgroundImage = themeActuel;
+}
+
+btnToutEffacer.addEventListener("click", function () {
+    window.localStorage.removeItem("taches");
+    chargerTaches();
+})
+
+btnToutCocher.addEventListener("click", function () {
+    let taches = JSON.parse(window.localStorage.getItem("taches"));
+    if (taches) {
+        taches = taches.map(function (tache) {
+            tache.fait = true;
+            return tache;
+        });
+        window.localStorage.setItem("taches", JSON.stringify(taches))
+        chargerTaches()
+    }
+
+})
 
 formulaire.addEventListener("submit", function (event) {
     event.preventDefault();
-    const tache = {
-        tache: event.target.querySelector("[type=text]").value,
-        date: event.target.querySelector("[type=datetime-local]").value,
-        id: Math.floor(Math.random() * 10000),
-        fait: false
+    if (!event.target.querySelector("[type=text]").value == "") {
+        const tache = {
+            tache: event.target.querySelector("[type=text]").value,
+            date: event.target.querySelector("[type=date]").value,
+            id: Math.floor(Math.random() * 10000),
+            fait: false
+        }
+        event.target.querySelector("[type=text]").value = "";
+        sauvegarder(tache);
+        chargerTaches()
     }
-    let nouvelleTache = creerTache(tache);
-    ajouterTache(nouvelleTache);
-    sauvegarder(tache);
+
 })
 
 function chargerTaches() {
+    refreshTache()
     const taches = window.localStorage.getItem("taches");
     if (taches) {
         let listeTaches = JSON.parse(taches);
@@ -40,18 +130,50 @@ function sauvegarder(tache) {
 
 }
 
+function refreshTache() {
+    main.innerHTML = '';
+}
+
 function ajouterTache(nouvelleTache) {
     main.innerHTML += nouvelleTache;
+}
+
+
+function supprimer(el) {
+    const id = el.parentElement.id
+    let taches = JSON.parse(window.localStorage.getItem("taches"));
+    if (taches) {
+        taches = taches.filter((tache) => tache.id != id);
+        window.localStorage.setItem("taches", JSON.stringify(taches))
+        chargerTaches()
+    }
+}
+
+function fait(el) {
+    const id = el.id.split("cbx-")[1];
+
+    let taches = JSON.parse(window.localStorage.getItem("taches"));
+    if (taches) {
+        taches = taches.map(function (tache) {
+            if (tache.id == id) {
+                tache.fait = !tache.fait;
+            }
+            return tache;
+        });
+        window.localStorage.setItem("taches", JSON.stringify(taches))
+        chargerTaches()
+    }
 
 }
 
 
+
 function creerTache(tache) {
-    return `<div class="task">
+    return `<div class="task" id='${tache.id}'>
     <div class="debut">
         <div class="container">
-            <input type="checkbox" id="cbx2" style="display: none;">
-            <label for="cbx2" class="check">
+            <input type="checkbox" onclick="fait(this)" class="cbx2" id="cbx-${tache.id}" style="display: none;" ${tache.fait ? 'checked' : ''}>
+            <label for="cbx-${tache.id}" class="check">
                 <svg width="30px" height="30px" viewBox="0 0 18 18">
                     <path
                         d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z">
@@ -62,10 +184,10 @@ function creerTache(tache) {
         </div>
         <div>
             <p>${tache.tache}</p>
-            <p class="date">${tache.date}</p>
+            <p class="date">${tache.date && new Date(tache.date).toLocaleDateString("fr")}</p>
         </div>
     </div>
-    <button class="buttonP">
+    <button class="buttonP" onclick='supprimer(this)'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 69 14" class="svgIcon bin-top">
             <g clip-path="url(#clip0_35_24)">
                 <path fill="black"
@@ -97,3 +219,4 @@ function creerTache(tache) {
 
 
 chargerTaches()
+chargerTheme()

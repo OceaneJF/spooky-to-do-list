@@ -50,7 +50,7 @@ header {
   backdrop-filter: blur(10px);
   outline: none;
   z-index: 0;
-
+  font-family: kalam;
   color: #0d0c22;
   transition: .3s ease;
 }
@@ -223,8 +223,8 @@ button:hover .star-6 {
   fill: #fffdef;
 }
 
-input[type="datetime-local"]::-webkit-inner-spin-button,
-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
 
   position: absolute;
   right: 20px;
@@ -235,7 +235,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
 }
 
-input[type="datetime-local"]::-webkit-datetime-edit {
+input[type="date"]::-webkit-datetime-edit {
 
   position: absolute;
   right: 20px;
@@ -245,7 +245,7 @@ input[type="datetime-local"]::-webkit-datetime-edit {
   height: 30px;
 }
 
-input[type="datetime-local"] {
+input[type="date"] {
   background-color: transparent;
   border: none;
   position: absolute;
@@ -352,16 +352,16 @@ main::-webkit-scrollbar {
   stroke: var(--accent-color, #FFF);
 }
 
-#cbx2:checked+.check svg {
+.cbx2:checked+.check svg {
   stroke: var(--accent-color, #FFF);
 }
 
-#cbx2:checked+.check svg path {
+.cbx2:checked+.check svg path {
   stroke-dashoffset: 60;
   transition: all 0.3s linear;
 }
 
-#cbx2:checked+.check svg polyline {
+.cbx2:checked+.check svg polyline {
   stroke-dashoffset: 42;
   transition: all 0.2s linear;
   transition-delay: 0.15s;
@@ -545,7 +545,7 @@ option {
     height: 50px;
   }
 
-  input[type="datetime-local"] {
+  input[type="date"] {
     right: -10px;
     top: 12px;
   }
@@ -567,7 +567,7 @@ option {
   }
 
 
-  input[type="datetime-local"] {
+  input[type="date"] {
     right: -20px;
     top: 12px;
     padding-left: 40px;
@@ -621,14 +621,14 @@ option {
   }
 
 
-  input[type="datetime-local"] {
+  input[type="date"] {
     right: -30px;
     top: 12px;
     padding-left: 40px;
   }
 
-  input[type="datetime-local"]::-webkit-inner-spin-button,
-  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
     width: 20px;
     height: 20px;
 
